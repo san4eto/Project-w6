@@ -1,0 +1,32 @@
+<h2>we think that {{commonName}} is too formal</h2>
+
+<div>
+  <img href="/{{img}}">
+</div>
+<h2> {{myName}}</h2>
+<h2>also known as {{commonName}} is very happy when it is</h2>
+<img href="/{{img}}">
+
+<label for="light"> 🔆</label>
+<select name="light" id="light">
+  {{#each plant}}
+  <option value="{{light}}">{{light}} </option>
+  {{/each}}
+</select>
+
+<label for="waterNeed">💧</label>
+<select name="waterNeed" id="waterNeed">
+  {{#each plant}}
+  <option value="{{waterNeed}}">{{waterNeed}} </option>
+  {{/each}}
+</select>
+
+<label for="soilCondition">🌱</label>
+<select name="soilCondition" id="soilCondition">
+  {{#each plant}}
+  <option value="{{soilCondition}}">{{soilCondition}} </option>
+  {{/each}}
+</select>
+<p>You can add the recommended care routine to your plant calendar:</p>
+<a href=" /myplants/{{:userId}}/calendar"><button type="button">Set Reminder </button></a>
+</form>
