@@ -2,6 +2,10 @@ const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
 const plantSchema = new Schema({
+  // owner: {
+  //   type: mongoose.Schema.Types.ObjectId,
+  //   ref: "username"
+  // },
   name: String,
   commonName: String,
   myName: { type: String, default: this.commonName },
