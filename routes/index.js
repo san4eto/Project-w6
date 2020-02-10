@@ -13,6 +13,35 @@ router.get("/takeapic", (req, res, next) => {
   res.render("camera.hbs");
 });
 
+router.post("https://api.plant.id/identify", (req, res, next) => {
+  document
+    .querySelector('input[type="file"]')
+    .addEventListener("change", function() {
+      if (this.files && this.files[0]) {
+        let img = document.querySelector("img"); // $('img')[0]
+        img.src = URL.createObjectURL(this.files[0]); // set src to blob url
+        img.onload = imageIsLoaded;
+      }
+    });
+});
+// router.get("/takeapic",(req,res,next)=>{
+
+// }
+// https://api.plant.id/identify
+
+// app.get("/albums/:id", (req, res) => {
+//   spotifyApi
+//     .getArtistAlbums(req.params.id)
+//     .then(data => {
+//       //   res.json(data.body);
+//       //   return;
+//       //   console.log("Received from the api:", data.body);
+//       console.log("Received from the api:", data.body);
+//       res.render("albums.hbs", { albums: data.body.items });
+//     })
+//     .catch(error => console.log(error));
+// });
+
 //Confirm plant
 //GET  /result/:databaseId
 // POST /myplants/:databaseId/:id - render care instructions form

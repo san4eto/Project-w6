@@ -106,3 +106,22 @@
   // once loading is complete.
   window.addEventListener("load", startup, false);
 })();
+
+function previewFile() {
+  const preview = document.querySelector("img");
+  const fileUpload = document.querySelector("input[type=file]").files[0];
+  const reader = new FileReader();
+
+  reader.addEventListener(
+    "load",
+    function() {
+      console.log(reader.result);
+      preview.src = reader.result;
+    },
+    false
+  );
+
+  if (fileUpload) {
+    reader.readAsDataURL(fileUpload);
+  }
+}

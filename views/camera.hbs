@@ -1,11 +1,32 @@
 <script src="/javascripts/camera.js"></script>
+
 <div class="contentarea">
   <h1>
     Hi {{user.username}}!
-    Take a picture of your plant
   </h1>
 
+  {{!-- FILE UPLOAD --}}
+  <div class="fileupload">
+    <h2>Please uplod a picture of your plant.</h2>
+    <form method="post" enctype="multipart/form-data">
+      <div>
+        <label for="file">Choose file to upload</label>
+        <input type="file" id="file" name="file" onchange="previewFile()" />
+        <img src="#" height="200" alt="Image preview...">
+      </div>
+      <div>
+        <button>Submit</button>
+      </div>
+    </form>
+  </div>
+
+
+  {{!-- CAMERA --}}
+
+
+
   <div class="camera">
+    <h2>Take a picture of your plant</h2>
     <video id="video">Video stream not available.</video>
     <button id="startbutton">Take photo</button>
   </div>
