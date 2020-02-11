@@ -1,13 +1,13 @@
 <script src="/javascripts/camera.js"></script>
 
 <div class="contentarea">
-  <h1>
+  <h1 id="imgUploadH1">
     Hi {{user.username}}!
   </h1>
 
   {{!-- FILE UPLOAD --}}
   <div class="fileupload">
-    <h2>Please uplod a picture of your plant.</h2>
+    <h2 id="imgUploadText">Please uplod a picture of your plant.</h2>
     <div>
       <form action="/plantInfo" method="get" enctype="multipart/form-data">
 
@@ -17,7 +17,7 @@
           </div>
 
           <div>
-            <label for="file">Choose file to upload</label>
+            <label id="lable" for="file">Choose an image to upload</label>
           </div>
 
           <div>

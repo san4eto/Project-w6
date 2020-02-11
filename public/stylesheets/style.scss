@@ -37,3 +37,117 @@ button {
   align-items: center;
   padding: 5 5;
 }
+
+//CALENDAR
+
+// primary-color: #757373
+// secondary-color: #ABABAB
+// important-color: #829AFA
+
+.calContainer {
+  width: 400px;
+  height: 380px;
+  margin: 40px auto;
+}
+
+.month {
+  color: #363531;
+  text-align: center;
+  font-size: 2em;
+  font-weight: 600;
+  width: 430.91px;
+  text-transform: uppercase;
+}
+
+.calender {
+  color: #757373;
+  display: inline-block;
+  margin: 20px 30px;
+  text-align: center;
+  font-weight: 600;
+}
+
+.nav {
+  padding: 3px 8px;
+  border: 1.6px solid #ababab;
+  border-radius: 50%;
+  font-size: 0.43em;
+  vertical-align: middle;
+}
+
+.prev {
+  margin-right: 40px;
+}
+
+.next {
+  margin-left: 40px;
+}
+
+td {
+  padding: 1em 1em;
+  cursor: default;
+}
+
+.week {
+  color: #363531;
+  text-transform: uppercase;
+}
+
+th {
+  padding-bottom: 5px;
+}
+
+.grey {
+  color: #ababab;
+}
+
+.today {
+  color: white;
+  border-radius: 100%;
+  background-color: #829afa;
+}
+
+.reminder::before {
+  content: "";
+  position: absolute;
+  height: 8px;
+  width: 8px;
+  background-color: #829afa;
+  border-radius: 50%;
+  margin-top: 24px;
+  margin-left: 5px;
+}
+
+.reminder:hover {
+  background-color: #829afa;
+  color: white;
+  transition: background 0.3s;
+  -moz-transition: background 0.3s;
+  -webkit-transition: background 0.3s;
+}
+
+.desciption {
+  background-color: #829afa;
+  position: absolute;
+}
+
+a:link {
+  color: #ababab;
+  text-decoration: none;
+}
+
+a:visited {
+  color: #ababab;
+  text-decoration: none;
+}
+
+a:hover {
+  color: #757373;
+  border-color: #757373;
+  text-decoration: none;
+}
+
+a:active {
+  color: #ababab;
+  text-decoration: none;
+}

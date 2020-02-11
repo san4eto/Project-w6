@@ -164,17 +164,15 @@ function previewFile() {
     reader.readAsDataURL(fileUpload);
     console.log(fileUpload);
   }
-
+  // readyState will be 2 Button invisible when pic upload
   reader.onloadend = function() {
     console.log("DONE", reader.readyState);
-    document.getElementById("imgUpload").style.display = ""; // readyState will be 2 Button invisible when pic upload
+    document.getElementById("imgUpload").style.display = "";
+    document.getElementById("imgUploadText").innerHTML = "😍";
+    document.getElementById("imgUploadH1").innerHTML = "Looks good!";
+    document.getElementById("lable").innerHTML = "Select a different image";
   };
 }
-
-// function performGetRequest2() {
-//   var resultElement = document.getElementById('getResult2');
-//   var todoId = document.getElementById('todoId').value;
-//   resultElement.innerHTML = '';
 
 //   axios.get('http://jsonplaceholder.typicode.com/todos', {
 //     params: {
@@ -187,37 +185,5 @@ function previewFile() {
 //   })
 //   .catch(function (error) {
 //       resultElement.innerHTML = generateErrorHTMLOutput(error);
-//   });
-// }
-
-// function uploadImagestr() {
-//   const preview = document.querySelector("img");
-//   const fileUpload = document.querySelector("input[type=file]").files[0];
-//   const reader = new FileReader();
-
-//   axios.post('https://api.plant.id/identify', {
-//     params: {
-//       key: "UmsFkuSbBP6RHGd2cX8RseQopiEZyOG2sB6xiuayUXjl1w8rMz",
-//       images: fileUpload
-//     }
-//   })
-//   .then(response =>{
-//     console.log(response);
-//     reader.addEventListener(
-//       "load",
-//       function() {
-//         console.log(reader.result);
-//         preview.src = reader.result;
-//       },
-//       false
-//     );
-//     //resultElement.innerHTML = generateSuccessHTMLOutput(response);
-//   })
-//   .catch(error =>{
-//     if (fileUpload) {
-//       reader.readAsDataURL(fileUpload);
-//       console.log(fileUpload);
-//     }
-//       //resultElement.innerHTML = generateErrorHTMLOutput(error);
 //   });
 // }
