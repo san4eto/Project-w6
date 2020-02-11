@@ -1,3 +1,5 @@
+//CAMERA
+
 (function() {
   // The width and height of the captured photo. We will set the
   // width to the value defined here, but the height will be
@@ -107,21 +109,90 @@
   window.addEventListener("load", startup, false);
 })();
 
+//TURN file TO STRING 64BIT
 function previewFile() {
   const preview = document.querySelector("img");
   const fileUpload = document.querySelector("input[type=file]").files[0];
   const reader = new FileReader();
-
   reader.addEventListener(
     "load",
     function() {
       console.log(reader.result);
       preview.src = reader.result;
+      axios
+        .post("https://api.plant.id/identify", {
+          key: "UmsFkuSbBP6RHGd2cX8RseQopiEZyOG2sB6xiuayUXjl1w8rMz",
+          images: [reader.result]
+        })
+        .then(response => {
+          console.log(response.data.id);
+          axios
+            .post("https://api.plant.id/check_identifications", {
+              key: "UmsFkuSbBP6RHGd2cX8RseQopiEZyOG2sB6xiuayUXjl1w8rMz",
+              ids: [response.data.id]
+            })
+            .then(information => {
+              console.log(information);
+            });
+        })
+        .catch(err => console.log(err));
     },
     false
   );
 
   if (fileUpload) {
     reader.readAsDataURL(fileUpload);
+    console.log(fileUpload);
   }
 }
+
+// function performGetRequest2() {
+//   var resultElement = document.getElementById('getResult2');
+//   var todoId = document.getElementById('todoId').value;
+//   resultElement.innerHTML = '';
+
+//   axios.get('http://jsonplaceholder.typicode.com/todos', {
+//     params: {
+//       id: todoId
+//     }
+//   })
+//   .then(function (response) {
+//     console.log(response);
+//     resultElement.innerHTML = generateSuccessHTMLOutput(response);
+//   })
+//   .catch(function (error) {
+//       resultElement.innerHTML = generateErrorHTMLOutput(error);
+//   });
+// }
+
+// function uploadImagestr() {
+//   const preview = document.querySelector("img");
+//   const fileUpload = document.querySelector("input[type=file]").files[0];
+//   const reader = new FileReader();
+
+//   axios.post('https://api.plant.id/identify', {
+//     params: {
+//       key: "UmsFkuSbBP6RHGd2cX8RseQopiEZyOG2sB6xiuayUXjl1w8rMz",
+//       images: fileUpload
+//     }
+//   })
+//   .then(response =>{
+//     console.log(response);
+//     reader.addEventListener(
+//       "load",
+//       function() {
+//         console.log(reader.result);
+//         preview.src = reader.result;
+//       },
+//       false
+//     );
+//     //resultElement.innerHTML = generateSuccessHTMLOutput(response);
+//   })
+//   .catch(error =>{
+//     if (fileUpload) {
+//       reader.readAsDataURL(fileUpload);
+//       console.log(fileUpload);
+//     }
+//       //resultElement.innerHTML = generateErrorHTMLOutput(error);
+//   });
+// }

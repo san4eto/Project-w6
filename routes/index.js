@@ -13,20 +13,43 @@ router.get("/takeapic", (req, res, next) => {
   res.render("camera.hbs");
 });
 
-router.post("https://api.plant.id/identify", (req, res, next) => {
-  document
-    .querySelector('input[type="file"]')
-    .addEventListener("change", function() {
-      if (this.files && this.files[0]) {
-        let img = document.querySelector("img"); // $('img')[0]
-        img.src = URL.createObjectURL(this.files[0]); // set src to blob url
-        img.onload = imageIsLoaded;
-      }
-    });
-});
-// router.get("/takeapic",(req,res,next)=>{
+// router.post("https://api.plant.id/identify", {
+// 	"key": "UmsFkuSbBP6RHGd2cX8RseQopiEZyOG2sB6xiuayUXjl1w8rMz",
+// 	"images": []}, (req, res, next) => {
 
-// }
+//     previewFile() {
+//       const preview = document.querySelector("img");
+//       const fileUpload = document.querySelector("input[type=file]").files[0];
+//       const reader = new FileReader();
+
+//       reader.addEventListener(
+//         "load",
+//         function() {
+//           console.log(reader.result);
+//           preview.src = reader.result;
+//         },
+//         false
+//       );
+
+//       if (fileUpload) {
+//         reader.readAsDataURL(fileUpload);
+//       };
+//     }
+//   });
+// //   document
+// //     .querySelector('input[type="file"]')
+// //     .addEventListener("change", function() {
+// //       if (this.files && this.files[0]) {
+// //         let img = document.querySelector("img"); // $('img')[0]
+// //         img.src = URL.createObjectURL(this.files[0]); // set src to blob url
+// //         img.onload = imageIsLoaded;
+// //       }
+// //     });
+
+// // router.get("/takeapic",(req,res,next)=>{
+
+// // }
+
 // https://api.plant.id/identify
 
 // app.get("/albums/:id", (req, res) => {
