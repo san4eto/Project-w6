@@ -67,6 +67,9 @@ router.get("/plantInfo", (req, res) => {
 router.get("/plantForm", (req, res) => {
   res.render("plantForm.hbs");
 });
+router.post("/plantForm", (req, res) => {
+  console.log("Here we have the info: ", req.body);
+});
 
 // router.post("/result/databaseId", (req, res) => {
 //   res.render("plantCare.hbs");

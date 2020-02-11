@@ -1,37 +1,48 @@
 <h2>we think that {{commonName}} is too formal</h2>
 
 <div>
-  <img href="/{{img}}">
+  <img href="/{{img}}" height="100">
 </div>
 
-<form action="/myplants/{{:userId}}/{{:databaseId}}/:id" method="POST"></form>
-<label for="myName">You can name it </label>
-<input myName="myName" type="text" id="myName">
+<div class="plantform">
+  <form action="/myplants/{{:userId}}/{{:databaseId}}/:id" method="POST"></form>
+  <label for="myName">Plant name </label>
+  <input myName="myName" type="text" id="myName">
+  <div>
+    <label for="light">Current Light🔆</label>
+    <select name="light" id="light">
+      {{#each plant}}
+      <option value="{{light}}">{{light}} </option>
+      {{/each}}
+    </select>
+  </div>
 
-<label for="light">Current Light🔆</label>
-<select name="light" id="light">
-  {{#each plant}}
-  <option value="{{light}}">{{light}} </option>
-  {{/each}}
-</select>
+  <div>
+    <label for="waterNeed">Watering Pattern 💧</label>
+    <select name="waterNeed" id="waterNeed">
+      {{#each plant}}
+      <option value="{{waterNeed}}">{{waterNeed}} </option>
+      {{/each}}
+    </select>
+  </div>
 
-<label for="waterNeed">Watering Pattern 💧</label>
-<select name="waterNeed" id="waterNeed">
-  {{#each plant}}
-  <option value="{{waterNeed}}">{{waterNeed}} </option>
-  {{/each}}
-</select>
+  <div>
+    <label for="soilCondition">Soil condition🌱</label>
+    <select name="soilCondition" id="soilCondition">
+      {{#each plant}}
+      <option value="{{soilCondition}}">{{soilCondition}} </option>
+      {{/each}}
+    </select>
+  </div>
 
-<label for="soilCondition">Soil condition🌱</label>
-<select name="soilCondition" id="soilCondition">
-  {{#each plant}}
-  <option value="{{soilCondition}}">{{soilCondition}} </option>
-  {{/each}}
-</select>
+  <div>
+    <a href="/plantCare/databaseId"><button type="button">Help me improve </button></a>
+  </div>
 
-<a href="/plantCare/databaseId"><button type="button">Help me improve </button></a>
-<a href="/myplants/databaseId/id"><button type="reset">Start over </button></a>
+  <div>
+    <a href="/myplants/databaseId/id"><button type="reset">Start over </button></a>
+  </div>
 
-{{!-- <a href=" /result/{{:databaseId}}"><button type="submit">Help me improve </button></a>
+  {{!-- <a href=" /result/{{:databaseId}}"><button type="submit">Help me improve </button></a>
 <a href="/myplants/{{:databaseId}}/:id"><button type=" reset">Start over </button></a> --}}
-</form>
+  </form>

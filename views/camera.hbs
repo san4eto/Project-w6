@@ -8,23 +8,39 @@
   {{!-- FILE UPLOAD --}}
   <div class="fileupload">
     <h2>Please uplod a picture of your plant.</h2>
-    <form action="/plantInfo" method="get" enctype="multipart/form-data">
-      <div>
-        <label for="file">Choose file to upload</label>
-        <input type="file" id="file" name="file" onchange="previewFile()" />
-        <img src="#" height="200" alt="Image preview...">
-      </div>
-      <div>
-        <button>Submit</button>
-      </div>
-    </form>
-  </div>
+    <div>
+      <form action="/plantInfo" method="get" enctype="multipart/form-data">
+
+        <div>
+          <div>
+            <img src="#" height="200" alt="Image preview...">
+          </div>
+
+          <div>
+            <label for="file">Choose file to upload</label>
+          </div>
+
+          <div>
+            <input type="file" id="file" name="file" onchange="previewFile()" />
+          </div>
+
+        </div>
+
+        <div>
 
 
-  {{!-- CAMERA --}}
+          <button id="imgUpload" style="display: none;">Submit</button>
+
+        </div>
+
+      </form>
+    </div>
 
 
-  {{!-- 
+    {{!-- CAMERA --}}
+
+
+    {{!-- 
   <div class="camera">
     <h2>Take a picture of your plant</h2>
     <video id="video">Video stream not available.</video>

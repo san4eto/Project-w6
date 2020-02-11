@@ -120,39 +120,42 @@ function previewFile() {
     function() {
       console.log(reader.result);
       preview.src = reader.result;
-      axios
-        .post("https://api.plant.id/identify", {
-          key: "UmsFkuSbBP6RHGd2cX8RseQopiEZyOG2sB6xiuayUXjl1w8rMz",
-          images: [reader.result]
-        })
-        .then(response => {
-          console.log(response.data.id);
-          console.log("idenTifIcatioN data");
+      // axios
+      //   .post("https://api.plant.id/identify", {
+      //     key: "UmsFkuSbBP6RHGd2cX8RseQopiEZyOG2sB6xiuayUXjl1w8rMz",
+      //     images: [reader.result]
+      //   })
+      //   .then(response => {
+      //     console.log(typeof response.data.id);
+      //     console.log(response.data.id);
+      //     console.log();
+      //     let id = response.data.id;
 
-          axios
-            .post("https://api.plant.id/check_identifications", {
-              key: "UmsFkuSbBP6RHGd2cX8RseQopiEZyOG2sB6xiuayUXjl1w8rMz",
-              ids: [response.data.id]
-            })
-            .then(information => {
-              axios.get("/plantInfo", (req, res) => {
-                Plant.create({
-                  commonName: "req.body.0.suggestions.[0].plant.common_name",
-                  plantInfo: "req.body.0.suggestions.[0].plant.url"
-                }).then(() => {
-                  res.render("plantInfo.hbs");
-                  res.redirect("/plantInfo");
-                });
-              });
-              console.log(information);
+      //     console.log("idenTifIcatioN data");
+      //     setTimeout(function() {
+      //       axios
+      //         .post("https://api.plant.id/check_identifications", {
+      //           key: "UmsFkuSbBP6RHGd2cX8RseQopiEZyOG2sB6xiuayUXjl1w8rMz",
+      //           ids: [id]
+      //         })
+      //         .then(information => {
+      //           console.log(information);
+      //           // console.log(req.body.0.suggestions.0.plant.common_name);
+      //           axios
+      //             .post("http://localhost:3000/plantForm", { information })
+      //             .then(something => {
+      //               console.log(something);
+      //             })
+      //             .catch(err => console.log(err));
 
-              //console.log(suggestions.plant.common_name);
-              // response.render("plantInfo.hbs", {
-              //   name: "req.body.0.suggestions.[0].plant.common_name"
-              // });
-            });
-        })
-        .catch(err => console.log(err));
+      //           //console.log(suggestions.plant.common_name);
+      //           // response.render("plantInfo.hbs", {
+      //           //   name: "req.body.0.suggestions.[0].plant.common_name"
+      //           // });
+      //         });
+      //     }, 1200);
+      //   })
+      //   .catch(err => console.log(err));
     },
     false
   );
@@ -161,6 +164,11 @@ function previewFile() {
     reader.readAsDataURL(fileUpload);
     console.log(fileUpload);
   }
+
+  reader.onloadend = function() {
+    console.log("DONE", reader.readyState);
+    document.getElementById("imgUpload").style.display = ""; // readyState will be 2 Button invisible when pic upload
+  };
 }
 
 // function performGetRequest2() {
