@@ -8,7 +8,7 @@
   {{!-- FILE UPLOAD --}}
   <div class="fileupload">
     <h2>Please uplod a picture of your plant.</h2>
-    <form action="/test" method="get" enctype="multipart/form-data">
+    <form action="/plantInfo" method="get" enctype="multipart/form-data">
       <div>
         <label for="file">Choose file to upload</label>
         <input type="file" id="file" name="file" onchange="previewFile()" />
@@ -24,7 +24,7 @@
   {{!-- CAMERA --}}
 
 
-
+  {{!-- 
   <div class="camera">
     <h2>Take a picture of your plant</h2>
     <video id="video">Video stream not available.</video>
@@ -32,10 +32,10 @@
   </div>
   <canvas id="canvas">
   </canvas>
-  {{!-- <div class="output">
+  <div class="output">
     <img id="photo" alt="Plant picture.">
-  </div> --}}
+  </div>
   <a href="/"> <button id="back">Back</button></a>
   <a href="/takeapic"> <button type="reset" id="reset">Reset</button></a>
   <a href="/plantInfo"> <button id="info">Find Plant</button></a>
-</div>
+</div> --}}

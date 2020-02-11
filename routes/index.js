@@ -9,33 +9,10 @@ router.get("/", (req, res, next) => {
 });
 
 /*GET CAMERA*/
-router.get("/takeapic", (req, res, next) => {
+router.get("/upload", (req, res, next) => {
   res.render("camera.hbs");
 });
 
-// router.post("https://api.plant.id/identify", {
-// 	"key": "UmsFkuSbBP6RHGd2cX8RseQopiEZyOG2sB6xiuayUXjl1w8rMz",
-// 	"images": []}, (req, res, next) => {
-
-//     previewFile() {
-//       const preview = document.querySelector("img");
-//       const fileUpload = document.querySelector("input[type=file]").files[0];
-//       const reader = new FileReader();
-
-//       reader.addEventListener(
-//         "load",
-//         function() {
-//           console.log(reader.result);
-//           preview.src = reader.result;
-//         },
-//         false
-//       );
-
-//       if (fileUpload) {
-//         reader.readAsDataURL(fileUpload);
-//       };
-//     }
-//   });
 // //   document
 // //     .querySelector('input[type="file"]')
 // //     .addEventListener("change", function() {
@@ -87,7 +64,7 @@ router.get("/plantInfo", (req, res) => {
 //   RETRIEVE PLANT DATA
 //   GET  /myplants/:databaseId/:id- render care instructions based on databaseID
 
-router.get("/result", (req, res) => {
+router.get("/plantForm", (req, res) => {
   res.render("plantForm.hbs");
 });
 
