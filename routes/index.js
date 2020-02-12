@@ -68,6 +68,7 @@ router.post("/plantForm/:id", (req, res, next) => {
   const temperature = req.body.temperature;
   const soil = req.body.soilCondition;
   console.log(req.user);
+  console.log(req.body);
   console.log("my plant", plantName);
 
   Plant.create({
@@ -76,7 +77,8 @@ router.post("/plantForm/:id", (req, res, next) => {
     img: "img",
     waterNeed: waterNeed,
     light: light,
-    temperature: "15-20°C"
+    temperature: temperature,
+    soilCondition: soil
   })
     .then(plantDocument => {
       console.log("hzuhuzh", plantDocument);
