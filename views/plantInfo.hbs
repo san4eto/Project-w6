@@ -1,15 +1,17 @@
-<h2>TEST</h2>
-<h2> We think this is {{plant.name}}</h2>
-<h2>also known as {{plant.common_name}}</h2>
-<p>Some basic info about it:{{plant.url}}</p>
-{{!-- 
-<img href="/{{img}}">
+<div class="plantinfo">
+  <h3> We think this is </h3>
+  <h1><span>{{plant.name}}</span></h1>
+  <a><img src="{{plantimage.url}}" height="200" alt="image of plant"></a>
+  <h3>also known as {{plant.common_name}}</h3>
+  <a href="{{plant.url}}">Some basic info about it</a>
 
 
-<p>Is that your plant?</p> --}}
-{{!-- <a href=" /result/{{:databaseId}}"> --}}
-{{!-- <a href="/plantForm">
-  <button>🧑‍🌾 Yes that is my plant</button></a>
 
-<a href="/upload">
-  <button>🕵️ Try again 📸</button></a> --}}
+  <p>Is that your plant?</p>
+  {{!-- <a href=" /result/{{:databaseId}}"> --}}
+  <a href="/plantForm">
+    <button>🧑‍🌾 Yes that is my plant</button></a>
+
+  <a href="/upload">
+    <button>🕵️ Try again 📸</button></a>
+</div>

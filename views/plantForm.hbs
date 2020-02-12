@@ -1,4 +1,4 @@
-<h2>we think that {{commonName}} is too formal</h2>
+<h2>we think that {{plant.name}} is too formal</h2>
 
 <div>
   <img href="/{{img}}" height="100">
@@ -6,6 +6,7 @@
 
 <div class="plantform">
   <form action="/myplants/{{:userId}}/{{:databaseId}}/:id" method="POST"></form>
+  {{!-- <form action="/myplants/{{:userId}}/{{:databaseId}}/:id" method="POST"></form> --}}
   <label for="myName">Plant name </label>
   <input myName="myName" type="text" id="myName">
   <div>
@@ -36,7 +37,7 @@
   </div>
 
   <div>
-    <a href="/plantCare/databaseId"><button type="button">Help me improve </button></a>
+    <a><button type="submit">Submit </button></a>
   </div>
 
   <div>

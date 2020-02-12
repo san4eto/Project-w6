@@ -2,8 +2,8 @@ const express = require("express");
 const router = express.Router();
 const axios = require("axios");
 
-// const Room = require("../models/Room");
-// const Comment = require("../models/Comment");
+const User = require("../models/User");
+const Plant = require("../models/Plant");
 
 /* GET home page */
 router.get("/", (req, res, next) => {
@@ -14,12 +14,6 @@ router.get("/", (req, res, next) => {
 router.get("/upload", (req, res, next) => {
   res.render("camera.hbs");
 });
-
-// // router.get("/takeapic",(req,res,next)=>{
-
-// // }
-
-// https://api.plant.id/identify
 
 //Confirm plant
 //GET  /result/:databaseId
@@ -36,6 +30,7 @@ router.get("/upload", (req, res, next) => {
 //     });
 // });
 
+// PLANT INFO PAGE
 router.get("/plantInfo", (req, res) => {
   console.log("test ");
   console.log(req.query);
@@ -46,9 +41,10 @@ router.get("/plantInfo", (req, res) => {
       ids: [parseFloat(id)]
     })
     .then(plantInfo => {
-      let images = plantInfo.data[0].images[0].urlsmall;
+      let images = plantInfo.data[0].images[0];
       let plant = plantInfo.data[0].suggestions[0].plant;
       console.log(plant);
+      console.log(images);
       res.render("plantInfo.hbs", { plant: plant, plantimage: images });
     });
 });
@@ -59,8 +55,29 @@ router.get("/plantInfo", (req, res) => {
 router.get("/plantForm", (req, res) => {
   res.render("plantForm.hbs");
 });
-router.post("/plantForm", (req, res) => {
+router.post("/plantForm", (req, res, next) => {
   console.log("Here we have the info: ", req.body);
+
+  // 2 the axios POST request is detected and handled
+  const plantName = req.body.myName;
+  const userID = req.user._id;
+
+  Plant.create({
+    myName: plantName
+  })
+    .then(plantDocument => {
+      const plantID = plantDocument._id;
+
+      return User.updateOne({ _id: userID }, { $push: { myPlants: plantID } });
+    })
+
+    .then(() => {
+      // 3 once the comment has been created and the Room.comments updated, we send a response -> FRONTEND
+      res.json({});
+    })
+    .catch(err => {
+      next(err);
+    });
 });
 
 // router.post("/result/databaseId", (req, res) => {

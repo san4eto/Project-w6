@@ -17,6 +17,10 @@ button {
   font-size: 16px;
   color: white; }
 
+.plantinfo span {
+  color: #f8b704;
+  font-weight: bolder; }
+
 .plantform {
   display: block;
   flex-direction: column;
