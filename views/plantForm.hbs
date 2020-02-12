@@ -11,32 +11,39 @@
     {{!-- <form action="/myplants/{{:userId}}/{{:databaseId}}/:id" method="POST"></form> --}}
     <label for="myName">Plant name </label>
     <input name="myName" type="text" id="myName">
-    {{!-- <div>
-    <label for="light">Current Light🔆</label>
-    <select name="light" id="light">
-      {{#each plant}}
-      <option value="{{light}}">{{light}} </option>
-      {{/each}}
-    </select>
-  </div>
+    <div>
+      <label for="light">Current Light🔆</label>
+      <select name="light" id="light">
+        <option value="Direct Sunlight">🔆</option>
+        <option value="Indirect Light">🌤</option>
+        <option value="Partial Shade">⛅️</option>
+        <option value="Shade">☁️ </option>
+      </select>
+    </div>
 
-  <div>
-    <label for="waterNeed">Watering Pattern 💧</label>
-    <select name="waterNeed" id="waterNeed">
-      {{#each plant}}
-      <option value="{{waterNeed}}">{{waterNeed}} </option>
-      {{/each}}
-    </select>
-  </div>
+    <div>
+      <label for="waterNeed">Watering Pattern 💧</label>
+      <select name="waterNeed" id="waterNeed">
+        <option value="daily">daily </option>
+        <option value="semi-weekly">semi-weekly</option>
+        <option value="weekly">weekly</option>
+        <option value="biweekly">biweekly</option>
+        <option value="monthly">monthly</option>
+      </select>
+    </div>
 
-  <div>
-    <label for="soilCondition">Soil condition🌱</label>
-    <select name="soilCondition" id="soilCondition">
-      {{#each plant}}
-      <option value="{{soilCondition}}">{{soilCondition}} </option>
-      {{/each}}
-    </select>
-  </div> --}}
+    <div>
+      <label for="soilCondition">Soil condition🌱</label>
+      <select name="soilCondition" id="soilCondition">
+        {{#each plant}}
+        <option value="{{soilCondition}}">{{soilCondition}} </option>
+        {{/each}}
+        <option value="damp">damp </option>
+        <option value="perfect">perfect</option>
+        <option value="very dry">very dry</option>
+
+      </select>
+    </div>
 
     <div>
       <a><button type="submit">Submit </button></a>

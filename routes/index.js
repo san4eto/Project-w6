@@ -63,22 +63,38 @@ router.post("/plantForm/:id", (req, res, next) => {
   // 2 the axios POST request is detected and handled
   const plantName = req.body.myName;
   const userID = req.user._id;
+  const waterNeed = req.user.waterNeed;
 
-  console.log("my olant", plantName);
+  console.log("my plant", plantName);
 
   Plant.create({
-    myName: plantName
+    myName: plantName,
+    name: "name",
+    img: "img",
+    waterNeed: waterNeed,
+    light: "Direct Sunlight",
+    temperature: "15-20°C"
   })
     .then(plantDocument => {
       console.log("hzuhuzh", plantDocument);
       const plantID = plantDocument._id;
+      console.log(plantID);
 
-      return User.updateOne({ _id: userID }, { $push: { myPlants: plantID } });
+      User.findOneAndUpdate(
+        { _id: userID },
+        { $push: { myPlants: plantID } },
+        { new: true }
+      )
+        .then(result => console.log("result", result))
+        .catch(err => console.log("error", err));
     })
 
-    .then(() => {
+    .then(plantDocuments => {
       // 3 once the comment has been created and the Room.comments updated, we send a response -> FRONTEND
-      res.render("plantCare.hbs", {});
+      res.render("plantCare.hbs", {
+        myName: plantName,
+        waterNeed: waterNeed
+      });
     })
     .catch(err => {
       next(err);

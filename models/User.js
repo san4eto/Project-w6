@@ -1,17 +1,19 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
+const Plant = require("../models/Plant");
 
 const userSchema = new Schema(
   {
     username: String,
-    password: String
+    password: String,
+    myPlants: [{ type: Schema.Types.ObjectId, ref: "Plant" }]
   },
+
   {
     timestamps: {
       createdAt: "created_at",
       updatedAt: "updated_at"
-    },
-    myPlants: [{ type: Schema.Types.ObjectId, ref: "Plant" }]
+    }
   }
 );
 
