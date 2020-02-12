@@ -1,5 +1,7 @@
 const express = require("express");
 const router = express.Router();
+const axios = require("axios");
+
 // const Room = require("../models/Room");
 // const Comment = require("../models/Comment");
 
@@ -13,34 +15,11 @@ router.get("/upload", (req, res, next) => {
   res.render("camera.hbs");
 });
 
-// //   document
-// //     .querySelector('input[type="file"]')
-// //     .addEventListener("change", function() {
-// //       if (this.files && this.files[0]) {
-// //         let img = document.querySelector("img"); // $('img')[0]
-// //         img.src = URL.createObjectURL(this.files[0]); // set src to blob url
-// //         img.onload = imageIsLoaded;
-// //       }
-// //     });
-
 // // router.get("/takeapic",(req,res,next)=>{
 
 // // }
 
 // https://api.plant.id/identify
-
-// app.get("/albums/:id", (req, res) => {
-//   spotifyApi
-//     .getArtistAlbums(req.params.id)
-//     .then(data => {
-//       //   res.json(data.body);
-//       //   return;
-//       //   console.log("Received from the api:", data.body);
-//       console.log("Received from the api:", data.body);
-//       res.render("albums.hbs", { albums: data.body.items });
-//     })
-//     .catch(error => console.log(error));
-// });
 
 //Confirm plant
 //GET  /result/:databaseId
@@ -58,7 +37,20 @@ router.get("/upload", (req, res, next) => {
 // });
 
 router.get("/plantInfo", (req, res) => {
-  res.render("plantInfo.hbs");
+  console.log("test ");
+  console.log(req.query);
+  let id = req.query.plantFileId;
+  axios
+    .post("https://api.plant.id/check_identifications", {
+      key: "UmsFkuSbBP6RHGd2cX8RseQopiEZyOG2sB6xiuayUXjl1w8rMz",
+      ids: [parseFloat(id)]
+    })
+    .then(plantInfo => {
+      let images = plantInfo.data[0].images[0].urlsmall;
+      let plant = plantInfo.data[0].suggestions[0].plant;
+      console.log(plant);
+      res.render("plantInfo.hbs", { plant: plant, plantimage: images });
+    });
 });
 
 //   RETRIEVE PLANT DATA
@@ -84,6 +76,7 @@ router.get("/result/databaseId", (req, res) => {
 router.get("/myplants/userId/calendar", (req, res) => {
   res.render("calendar.hbs");
 });
+
 // (add to calendar)
 // POST / /myplants/survivalcalendar - edit available calendar adding X
 

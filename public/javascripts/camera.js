@@ -110,6 +110,9 @@
 // })();
 
 //TURN file TO STRING 64BIT
+
+let id;
+let state = true;
 function previewFile() {
   const preview = document.querySelector("img");
   const fileUpload = document.querySelector("input[type=file]").files[0];
@@ -118,44 +121,23 @@ function previewFile() {
   reader.addEventListener(
     "load",
     function() {
+      state = false;
       console.log(reader.result);
       preview.src = reader.result;
-      // axios
-      //   .post("https://api.plant.id/identify", {
-      //     key: "UmsFkuSbBP6RHGd2cX8RseQopiEZyOG2sB6xiuayUXjl1w8rMz",
-      //     images: [reader.result]
-      //   })
-      //   .then(response => {
-      //     console.log(typeof response.data.id);
-      //     console.log(response.data.id);
-      //     console.log();
-      //     let id = response.data.id;
-
-      //     console.log("idenTifIcatioN data");
-      //     setTimeout(function() {
-      //       axios
-      //         .post("https://api.plant.id/check_identifications", {
-      //           key: "UmsFkuSbBP6RHGd2cX8RseQopiEZyOG2sB6xiuayUXjl1w8rMz",
-      //           ids: [id]
-      //         })
-      //         .then(information => {
-      //           console.log(information);
-      //           // console.log(req.body.0.suggestions.0.plant.common_name);
-      //           axios
-      //             .post("http://localhost:3000/plantForm", { information })
-      //             .then(something => {
-      //               console.log(something);
-      //             })
-      //             .catch(err => console.log(err));
-
-      //           //console.log(suggestions.plant.common_name);
-      //           // response.render("plantInfo.hbs", {
-      //           //   name: "req.body.0.suggestions.[0].plant.common_name"
-      //           // });
-      //         });
-      //     }, 1200);
-      //   })
-      //   .catch(err => console.log(err));
+      axios
+        .post("https://api.plant.id/identify", {
+          key: "UmsFkuSbBP6RHGd2cX8RseQopiEZyOG2sB6xiuayUXjl1w8rMz",
+          images: [reader.result]
+        })
+        .then(response => {
+          console.log(typeof response.data.id);
+          console.log(response.data.id);
+          console.log();
+          id = response.data.id;
+          state = true;
+          console.log("idenTifIcatioN data");
+        })
+        .catch(err => console.log(err));
     },
     false
   );
@@ -165,12 +147,23 @@ function previewFile() {
     console.log(fileUpload);
   }
   // readyState will be 2 Button invisible when pic upload
+
   reader.onloadend = function() {
-    console.log("DONE", reader.readyState);
-    document.getElementById("imgUpload").style.display = "";
-    document.getElementById("imgUploadText").innerHTML = "😍";
-    document.getElementById("imgUploadH1").innerHTML = "Looks good!";
-    document.getElementById("lable").innerHTML = "Select a different image";
+    // check asyncronously that the id exists and then send create button
+    let checkId = setInterval(function() {
+      if (state) {
+        console.log("DONE", reader.readyState);
+        document.getElementById("imgUpload").style.display = "";
+        document.getElementById("imgUploadText").innerHTML = "😍";
+        document.getElementById("imgUploadH1").innerHTML = "Looks good!";
+        document.getElementById("lable").innerHTML = "Select a different image";
+        document.querySelector("#plantFileId").value = id;
+
+        clearInterval(checkId);
+      } else {
+        document.getElementById("imgUpload").style.display = "none";
+      }
+    }, 1);
   };
 }
 
@@ -187,3 +180,27 @@ function previewFile() {
 //       resultElement.innerHTML = generateErrorHTMLOutput(error);
 //   });
 // }
+
+/* setTimeout(function() {
+  axios
+    .post("https://api.plant.id/check_identifications", {
+      key: "UmsFkuSbBP6RHGd2cX8RseQopiEZyOG2sB6xiuayUXjl1w8rMz",
+      ids: [id]
+    })
+    .then(information => {
+      console.log(information);
+      // console.log(req.body.0.suggestions.0.plant.common_name);
+      axios
+        .post("http://localhost:3000/plantForm", { information })
+        .then(something => {
+          console.log(something);
+        })
+        .catch(err => console.log(err));
+
+      //console.log(suggestions.plant.common_name);
+      // response.render("plantInfo.hbs", {
+      //   name: "req.body.0.suggestions.[0].plant.common_name"
+      // });
+    });
+}, 1200);
+ */
