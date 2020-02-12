@@ -99,7 +99,9 @@ router.post("/plantForm/:id", (req, res, next) => {
       res.render("plantCare.hbs", {
         myName: plantName,
         waterNeed: waterNeed,
-        light: light
+        light: light,
+        temperature: temperature,
+        soilCondition: soil
       });
     })
     .catch(err => {
