@@ -58,12 +58,17 @@ router.get("/plantForm", (req, res) => {
   res.render("plantForm.hbs", { userID: userIDvalue });
 });
 
+const waterNeedEnum = ["daily", "semi-weekly", "weekly", "biweekly", "monthly"];
+
 router.post("/plantForm/:id", (req, res, next) => {
   console.log("plant");
   // 2 the axios POST request is detected and handled
   const plantName = req.body.myName;
   const userID = req.user._id;
-  const waterNeed = req.body.waterNeed;
+
+  // const waterNeed = req.body.waterNeed;
+  const waterNeed =
+    waterNeedEnum[Math.floor(Math.random() * waterNeedEnum.length)];
   const light = req.body.light;
   const temperature = req.body.temperature;
   const soil = req.body.soilCondition;
@@ -113,13 +118,25 @@ router.post("/plantForm/:id", (req, res, next) => {
 //   res.render("plantCare.hbs");
 // });
 
-router.get("/result/databaseId", (req, res) => {
-  res.render("plantCare.hbs");
-});
+// router.get("/result/databaseId", (req, res) => {
+//   res.render("plantCare.hbs");
+// });
 
 // CALENDAR
 // GET   /myplants/:databaseId/:id
-router.get("/myplants/userId/calendar", (req, res) => {
+// router.get("/myplants/userId/calendar", (req, res) => {
+//   res.render("calendar.hbs");
+// });
+
+// router.get("/plantForm/:id", (req, res) => {
+//   res.render("calendar.hbs");
+// });
+
+router.post("/calendar/:userID", (req, res) => {
+  res.render("calendar.hbs");
+});
+
+router.get("/calendar", (req, res) => {
   res.render("calendar.hbs");
 });
 

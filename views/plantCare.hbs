@@ -1,30 +1,31 @@
-<div>
+<form action="/calendar/{{userID}}" method="POST">
+  <div>
+    <img href="/{{img}}">
+  </div>
+  <h2> {{myName}}</h2>
+  <h2>also known as {{myName}} is very happy when it is</h2>
   <img href="/{{img}}">
-</div>
-<h2> {{myName}}</h2>
-<h2>also known as {{myName}} is very happy when it is</h2>
-<img href="/{{img}}">
 
-<label for="light"> 🔆</label>
-<select name="light" id="light">
+  <label for="light"> 🔆</label>
+  <select name="light" id="light">
 
-  <option value="{{light}}">{{light}} </option>
+    <option value="{{light}}">{{light}} </option>
 
-</select>
+  </select>
 
-<label for="waterNeed">💧</label>
-<select name="waterNeed" id="waterNeed">
+  <label for="waterNeed">💧</label>
+  <select name="waterNeed" id="waterNeed">
 
-  <option value="{{waterNeed}}">{{waterNeed}} </option>
+    <option value="{{waterNeed}}">{{waterNeed}} </option>
 
-</select>
+  </select>
 
-<label for="soilCondition">🌱</label>
+  <label for="soilCondition">🌱</label>
 
-<select name="soilCondition" id="soilCondition">
-  <option value="{{soilCondition}}">{{soilCondition}} </option>
-</select>
-<p>You can add the recommended care routine to your plant calendar:</p>
-<a href="/myplants/userId/calendar"><button type="button">Set Reminder </button></a>
-{{!-- <a href=" /myplants/{{:userId}}/calendar"><button type="button">Set Reminder </button></a> --}}
+  <select name="soilCondition" id="soilCondition">
+    <option value="{{soilCondition}}">{{soilCondition}} </option>
+  </select>
+  <p>You can add the recommended care routine to your plant calendar:</p>
+  <a><button type="submit">Set Reminder </button></a>
+  {{!-- <a href=" /myplants/{{:userId}}/calendar"><button type="button">Set Reminder </button></a> --}}
 </form>
