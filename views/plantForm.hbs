@@ -4,12 +4,14 @@
   <img href="/{{img}}" height="100">
 </div>
 
+<div>{{userID}}</div>
+
 <div class="plantform">
-  <form action="/myplants/{{:userId}}/{{:databaseId}}/:id" method="POST"></form>
-  {{!-- <form action="/myplants/{{:userId}}/{{:databaseId}}/:id" method="POST"></form> --}}
-  <label for="myName">Plant name </label>
-  <input myName="myName" type="text" id="myName">
-  <div>
+  <form action="/plantForm/{{userID}}" method="POST">
+    {{!-- <form action="/myplants/{{:userId}}/{{:databaseId}}/:id" method="POST"></form> --}}
+    <label for="myName">Plant name </label>
+    <input name="myName" type="text" id="myName">
+    {{!-- <div>
     <label for="light">Current Light🔆</label>
     <select name="light" id="light">
       {{#each plant}}
@@ -34,16 +36,16 @@
       <option value="{{soilCondition}}">{{soilCondition}} </option>
       {{/each}}
     </select>
-  </div>
+  </div> --}}
 
-  <div>
-    <a><button type="submit">Submit </button></a>
-  </div>
+    <div>
+      <a><button type="submit">Submit </button></a>
+    </div>
 
-  <div>
-    <a href="/myplants/databaseId/id"><button type="reset">Start over </button></a>
-  </div>
+    <div>
+      <a href="/myplants/databaseId/id"><button type="reset">Start over </button></a>
+    </div>
 
-  {{!-- <a href=" /result/{{:databaseId}}"><button type="submit">Help me improve </button></a>
+    {{!-- <a href=" /result/{{:databaseId}}"><button type="submit">Help me improve </button></a>
 <a href="/myplants/{{:databaseId}}/:id"><button type=" reset">Start over </button></a> --}}
   </form>

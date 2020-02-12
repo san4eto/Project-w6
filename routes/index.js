@@ -53,19 +53,24 @@ router.get("/plantInfo", (req, res) => {
 //   GET  /myplants/:databaseId/:id- render care instructions based on databaseID
 
 router.get("/plantForm", (req, res) => {
-  res.render("plantForm.hbs");
+  let userIDvalue = req.user._id;
+  console.log(userIDvalue);
+  res.render("plantForm.hbs", { userID: userIDvalue });
 });
-router.post("/plantForm", (req, res, next) => {
-  console.log("Here we have the info: ", req.body);
 
+router.post("/plantForm/:id", (req, res, next) => {
+  console.log("plant");
   // 2 the axios POST request is detected and handled
   const plantName = req.body.myName;
   const userID = req.user._id;
+
+  console.log("my olant", plantName);
 
   Plant.create({
     myName: plantName
   })
     .then(plantDocument => {
+      console.log("hzuhuzh", plantDocument);
       const plantID = plantDocument._id;
 
       return User.updateOne({ _id: userID }, { $push: { myPlants: plantID } });
@@ -73,7 +78,7 @@ router.post("/plantForm", (req, res, next) => {
 
     .then(() => {
       // 3 once the comment has been created and the Room.comments updated, we send a response -> FRONTEND
-      res.json({});
+      res.render("plantCare.hbs", {});
     })
     .catch(err => {
       next(err);
