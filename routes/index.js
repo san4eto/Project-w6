@@ -63,8 +63,11 @@ router.post("/plantForm/:id", (req, res, next) => {
   // 2 the axios POST request is detected and handled
   const plantName = req.body.myName;
   const userID = req.user._id;
-  const waterNeed = req.user.waterNeed;
-
+  const waterNeed = req.body.waterNeed;
+  const light = req.body.light;
+  const temperature = req.body.temperature;
+  const soil = req.body.soilCondition;
+  console.log(req.user);
   console.log("my plant", plantName);
 
   Plant.create({
@@ -72,7 +75,7 @@ router.post("/plantForm/:id", (req, res, next) => {
     name: "name",
     img: "img",
     waterNeed: waterNeed,
-    light: "Direct Sunlight",
+    light: light,
     temperature: "15-20°C"
   })
     .then(plantDocument => {
@@ -93,7 +96,8 @@ router.post("/plantForm/:id", (req, res, next) => {
       // 3 once the comment has been created and the Room.comments updated, we send a response -> FRONTEND
       res.render("plantCare.hbs", {
         myName: plantName,
-        waterNeed: waterNeed
+        waterNeed: waterNeed,
+        light: light
       });
     })
     .catch(err => {
