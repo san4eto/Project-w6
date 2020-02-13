@@ -119,7 +119,7 @@ router.post("/plantForm/:id", (req, res, next) => {
   console.log(req.body);
   console.log("my plant", plantName);
 
-  Plant.findOneAndUpdate(plantId, {
+  Plant.findByIdAndUpdate(req.params.id, {
     myName: plantName,
     waterNeed: waterNeed,
     light: light,
