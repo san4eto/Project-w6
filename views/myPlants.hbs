@@ -1,10 +1,18 @@
 <h2>All your Plants</h2>
-<ul>
-  {{#each myPlants}}
+<div class="myPlants">
+  <ul>
+    {{#each myPlants}}
 
-  <li>{{myPlants.myName}} {{myName}}the {{commonName}} plant.</li>
-  <a href="/plantCare/plantId"></a>
+    <li>
+      <h3>🌱{{myName}}</h3>
+    </li>
+    <li> {{myName}} the {{commonName}} plant.</li>
+    <li> 💧 {{waterNeed}}</li>
+    <li> 🔆 {{light}}</li>
+    <li> 🦦 {{soilCondition}}</li>
+    <a href="/plantCare/plantId"></a>
 
 
-  {{/each}}
-</ul>
+    {{/each}}
+  </ul>
+</div>

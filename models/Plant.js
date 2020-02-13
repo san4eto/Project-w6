@@ -7,10 +7,14 @@ const plantSchema = new Schema({
   //   type: mongoose.Schema.Types.ObjectId,
   //   ref: "username"
   // },
-  name: String,
+  name: { type: String },
   commonName: String,
+  botanicalName: String,
+  reqId: String,
+  probability: String,
   myName: { type: String, default: this.commonName },
   img: String,
+
   plantInfo: String,
   waterNeed: {
     type: String,

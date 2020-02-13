@@ -33,7 +33,7 @@ router.get("/upload", (req, res, next) => {
 // });
 
 // PLANT INFO PAGE
-router.get("/plantInfo", (req, res) => {
+router.get("/plantInfo", (req, res, next) => {
   console.log("test ");
   console.log(req.query);
   let id = req.query.plantFileId;
@@ -42,12 +42,31 @@ router.get("/plantInfo", (req, res) => {
       key: "UmsFkuSbBP6RHGd2cX8RseQopiEZyOG2sB6xiuayUXjl1w8rMz",
       ids: [parseFloat(id)]
     })
+
     .then(plantInfo => {
       let images = plantInfo.data[0].images[0];
       let plant = plantInfo.data[0].suggestions[0].plant;
-      console.log(plant);
-      console.log(images);
-      res.render("plantInfo.hbs", { plant: plant, plantimage: images });
+      let plantReal = plantInfo.data[0].suggestions[0].plant.name;
+      let plantNormalName = plantInfo.data[0].suggestions[0].plant.common_name;
+      let probability = plantInfo.data[0].suggestions[0].probability;
+      let reqId = plantInfo.data[0].id;
+
+      Plant.create({
+        reqId: reqId,
+        name: plantNormalName,
+        img: "images",
+        botanicalName: plantReal,
+        commonName: plantNormalName
+      })
+        .then(() => {
+          console.log("NOVO DB");
+          console.log(plant);
+          console.log(images);
+          res.render("plantInfo.hbs", { plant: plant, plantimage: images });
+        })
+        .catch(err => {
+          next(err);
+        });
     });
 });
 

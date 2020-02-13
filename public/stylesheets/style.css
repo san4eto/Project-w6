@@ -36,6 +36,12 @@ button {
   align-items: center;
   padding: 5 5; }
 
+.myPlants ul {
+  list-style-type: none; }
+
+.myPlants h3 {
+  text-decoration: underline; }
+
 .calContainer {
   width: 400px;
   height: 380px;
