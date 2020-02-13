@@ -1,10 +1,10 @@
-<h2>we think that {{plant.name}} is too formal</h2>
-
+<h2> {{plant.botanicalName}} </h2>
+<p>is such a formal name for a plant.<br> Please name your plant below</p>
 <div>
-  <img href="/{{img}}" height="100">
+  <img src="{{plant.img}}" height="200">
 </div>
 
-<div>{{userID}}{{this.username}}</div>
+<div>{{username}}</div>
 <div class="plantform">
   <form action="/plantForm/{{plantId}}" method="POST">
     {{!-- <form action="/myplants/{{:userId}}/{{:databaseId}}/:id" method="POST"></form> --}}

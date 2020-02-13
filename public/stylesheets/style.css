@@ -42,6 +42,9 @@ button {
 .myPlants h3 {
   text-decoration: underline; }
 
+.commonName {
+  font-style: italic; }
+
 .calContainer {
   width: 400px;
   height: 380px;

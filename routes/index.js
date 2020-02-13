@@ -34,7 +34,6 @@ router.get("/upload", (req, res, next) => {
 
 // PLANT INFO PAGE
 router.get("/plantInfo", (req, res, next) => {
-  console.log("testPLANTINFO");
   console.log("plantInfo", req.query);
   let id = req.query.plantFileId;
   let userID = req.user._id;
@@ -45,7 +44,7 @@ router.get("/plantInfo", (req, res, next) => {
     })
 
     .then(plantInfo => {
-      let images = plantInfo.data[0].images[0];
+      let images = plantInfo.data[0].images[0].url;
       let plant = plantInfo.data[0].suggestions[0].plant;
       let plantReal = plantInfo.data[0].suggestions[0].plant.name;
       let plantNormalName = plantInfo.data[0].suggestions[0].plant.common_name;
@@ -57,18 +56,22 @@ router.get("/plantInfo", (req, res, next) => {
         belongsTo: userID,
         reqId: reqId,
         name: plantNormalName,
-        img: "images",
+        img: images,
         botanicalName: plantReal,
         commonName: plantNormalName
       })
         .then(newPlant => {
           console.log("NOVO DB");
           console.log(newPlant);
-          console.log(images);
+
+          console.log("PLANT", plant);
+
           res.render("plantInfo.hbs", {
             plant: plant,
             plantimage: images,
-            plantId: newPlant._id
+            plantId: newPlant._id,
+            name: newPlant.name,
+            img: newPlant.img
           });
         })
         .catch(err => {
@@ -80,12 +83,22 @@ router.get("/plantInfo", (req, res, next) => {
 //   RETRIEVE PLANT DATA
 //   GET  /myplants/:databaseId/:id- render care instructions based on databaseID
 
-router.get("/plantForm/:id", (req, res) => {
+router.get("/plantForm/:id", (req, res, next) => {
   let userIDvalue = req.user._id;
   let plantId = req.params.id;
   // console.log("userPLANTFORM:", req.user);
   //console.log(userIDvalue);
-  res.render("plantForm.hbs", { userID: userIDvalue, plantId });
+  Plant.findById(plantId)
+    .then(plant => {
+      res.render("plantForm.hbs", {
+        plant,
+        userID: userIDvalue,
+        plantId
+      });
+    })
+    .catch(err => {
+      next(err);
+    });
 });
 
 const waterNeedEnum = ["daily", "semi-weekly", "weekly", "biweekly", "monthly"];
@@ -127,7 +140,6 @@ router.post("/plantForm/:id", (req, res, next) => {
     })
 
     .then(plantDocuments => {
-      // 3 once the comment has been created and the Room.comments updated, we send a response -> FRONTEND
       res.render("plantCare.hbs", {
         myName: plantName,
         waterNeed: waterNeed,

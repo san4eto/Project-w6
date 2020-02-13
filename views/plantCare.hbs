@@ -1,11 +1,11 @@
 <form action="/calendar" method="POST">
   <div>
-    <img href="/{{img}}">
+    <img src="{{img}}">
     {{userID}}
   </div>
   <h2> {{myName}}</h2>
-  <h2>also known as {{myName}} is very happy when it is</h2>
-  <img href="/{{img}}">
+  <h2>or {{plant.name}} is very happy when it is</h2>
+  <img href="{{img}}">
 
   <label for="light"> 🔆</label>
   <select name="light" id="light">
@@ -17,7 +17,7 @@
   <label for="waterNeed">💧</label>
   <select name="waterNeed" id="waterNeed">
 
-    <option value="{{waterNeed}}">{{waterNeed}} </option>
+    <option value="{{plant.waterNeed}}">{{waterNeed}} </option>
 
   </select>
 
