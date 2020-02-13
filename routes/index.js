@@ -56,6 +56,7 @@ router.get("/plantInfo", (req, res) => {
 
 router.get("/plantForm", (req, res) => {
   let userIDvalue = req.user._id;
+
   console.log(userIDvalue);
   res.render("plantForm.hbs", { userID: userIDvalue });
 });
@@ -74,6 +75,7 @@ router.post("/plantForm/:id", (req, res, next) => {
   const light = req.body.light;
   const temperature = req.body.temperature;
   const soil = req.body.soilCondition;
+
   console.log(req.user);
   console.log(req.body);
   console.log("my plant", plantName);
@@ -147,7 +149,19 @@ router.get("/calendar/:id", (req, res) => {
 // GET /myplants/overview
 // -> render name of each plant ID
 router.get("/myplants/userId", (req, res) => {
-  res.render("myPlants.hbs");
+  let username = req.user.username;
+  let userPlants = req.user.myPlants;
+  console.log("MOITE CVETQ", req.user);
+
+  Plant.find()
+    .then(myPlants => {
+      res.render("myPlants.hbs", { myPlants, user: req.user });
+    })
+    .catch(err => {
+      next(err);
+    });
+
+  // res.render("myPlants.hbs", { username: username, myPlants: userPlants });
 });
 
 module.exports = router;
