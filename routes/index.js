@@ -12,7 +12,9 @@ router.get("/", (req, res, next) => {
 
 /*GET CAMERA*/
 router.get("/upload", (req, res, next) => {
-  res.render("camera.hbs");
+  username = req.user.username;
+  console.log("USER", username);
+  res.render("camera.hbs", { username: username });
 });
 
 //Confirm plant
@@ -86,7 +88,6 @@ router.post("/plantForm/:id", (req, res, next) => {
     soilCondition: soil
   })
     .then(plantDocument => {
-      console.log("hzuhuzh", plantDocument);
       const plantID = plantDocument._id;
       console.log(plantID);
 
@@ -128,16 +129,15 @@ router.post("/plantForm/:id", (req, res, next) => {
 //   res.render("calendar.hbs");
 // });
 
-// router.get("/plantForm/:id", (req, res) => {
-//   res.render("calendar.hbs");
-// });
-
-router.post("/calendar/:userID", (req, res) => {
-  res.render("calendar.hbs");
+router.post("/calendar", (req, res) => {
+  const userID = req.user._id;
+  res.redirect("/calendar/:id");
 });
 
-router.get("/calendar", (req, res) => {
-  res.render("calendar.hbs");
+router.get("/calendar/:id", (req, res) => {
+  const userID = req.user._id;
+  console.log("posledno", userID);
+  res.render("calendar.hbs", { userID: userID });
 });
 
 // (add to calendar)
