@@ -34,9 +34,10 @@ router.get("/upload", (req, res, next) => {
 
 // PLANT INFO PAGE
 router.get("/plantInfo", (req, res, next) => {
-  console.log("test ");
-  console.log(req.query);
+  console.log("testPLANTINFO");
+  console.log("plantInfo", req.query);
   let id = req.query.plantFileId;
+  let userID = req.user._id;
   axios
     .post("https://api.plant.id/check_identifications", {
       key: "UmsFkuSbBP6RHGd2cX8RseQopiEZyOG2sB6xiuayUXjl1w8rMz",
@@ -50,19 +51,25 @@ router.get("/plantInfo", (req, res, next) => {
       let plantNormalName = plantInfo.data[0].suggestions[0].plant.common_name;
       let probability = plantInfo.data[0].suggestions[0].probability;
       let reqId = plantInfo.data[0].id;
+      let userID = req.user._id;
 
       Plant.create({
+        belongsTo: userID,
         reqId: reqId,
         name: plantNormalName,
         img: "images",
         botanicalName: plantReal,
         commonName: plantNormalName
       })
-        .then(() => {
+        .then(newPlant => {
           console.log("NOVO DB");
-          console.log(plant);
+          console.log(newPlant);
           console.log(images);
-          res.render("plantInfo.hbs", { plant: plant, plantimage: images });
+          res.render("plantInfo.hbs", {
+            plant: plant,
+            plantimage: images,
+            plantId: newPlant._id
+          });
         })
         .catch(err => {
           next(err);
@@ -73,21 +80,21 @@ router.get("/plantInfo", (req, res, next) => {
 //   RETRIEVE PLANT DATA
 //   GET  /myplants/:databaseId/:id- render care instructions based on databaseID
 
-router.get("/plantForm", (req, res) => {
+router.get("/plantForm/:id", (req, res) => {
   let userIDvalue = req.user._id;
-
-  console.log(userIDvalue);
-  res.render("plantForm.hbs", { userID: userIDvalue });
+  let plantId = req.params.id;
+  // console.log("userPLANTFORM:", req.user);
+  //console.log(userIDvalue);
+  res.render("plantForm.hbs", { userID: userIDvalue, plantId });
 });
 
 const waterNeedEnum = ["daily", "semi-weekly", "weekly", "biweekly", "monthly"];
 
 router.post("/plantForm/:id", (req, res, next) => {
-  console.log("plant");
-  // 2 the axios POST request is detected and handled
   const plantName = req.body.myName;
   const userID = req.user._id;
-
+  const plantId = req.params.id;
+  console.log(plantId);
   // const waterNeed = req.body.waterNeed;
   const waterNeed =
     waterNeedEnum[Math.floor(Math.random() * waterNeedEnum.length)];
@@ -99,10 +106,8 @@ router.post("/plantForm/:id", (req, res, next) => {
   console.log(req.body);
   console.log("my plant", plantName);
 
-  Plant.create({
+  Plant.findOneAndUpdate(plantId, {
     myName: plantName,
-    name: "name",
-    img: "img",
     waterNeed: waterNeed,
     light: light,
     temperature: temperature,

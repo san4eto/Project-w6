@@ -5,9 +5,8 @@
 </div>
 
 <div>{{userID}}{{this.username}}</div>
-
 <div class="plantform">
-  <form action="/plantForm/{{userID}}" method="POST">
+  <form action="/plantForm/{{plantId}}" method="POST">
     {{!-- <form action="/myplants/{{:userId}}/{{:databaseId}}/:id" method="POST"></form> --}}
     <label for="myName">Plant name </label>
     <input name="myName" type="text" id="myName">
