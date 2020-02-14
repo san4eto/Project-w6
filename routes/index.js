@@ -188,7 +188,7 @@ router.get("/calendar", (req, res, next) => {
   //     next(err);
   //   });
 
-  res.render("calendar.hbs", { /*plantDocument,*/ userID: userID });
+  res.render("calendar.hbs", { /*plantDocument*/ userID: userID });
 });
 
 // (add to calendar)
