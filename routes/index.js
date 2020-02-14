@@ -107,7 +107,8 @@ router.post("/plantForm/:id", (req, res, next) => {
   const plantName = req.body.myName;
   const userID = req.user._id;
   const plantId = req.params.id;
-  console.log(plantId);
+  // console.log(plantId);
+
   // const waterNeed = req.body.waterNeed;
   const waterNeed =
     waterNeedEnum[Math.floor(Math.random() * waterNeedEnum.length)];
@@ -169,13 +170,25 @@ router.post("/plantForm/:id", (req, res, next) => {
 
 router.post("/calendar", (req, res) => {
   const userID = req.user._id;
-  res.redirect("/calendar/:id");
+
+  res.redirect("/calendar/");
 });
 
-router.get("/calendar/:id", (req, res) => {
+router.get("/calendar", (req, res, next) => {
   const userID = req.user._id;
+  console.log("body", req.user);
   console.log("posledno", userID);
-  res.render("calendar.hbs", { userID: userID });
+
+  // Plant.findOne(req.user.myPlants[0])
+  //   .then(plantDocument => {
+  //     res.json();
+  //     console.log(res.json());
+  //   })
+  //   .catch(err => {
+  //     next(err);
+  //   });
+
+  res.render("calendar.hbs", { plantDocument, userID: userID });
 });
 
 // (add to calendar)

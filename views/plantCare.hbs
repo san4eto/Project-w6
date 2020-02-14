@@ -4,9 +4,10 @@
     {{userID}}
   </div>
   <h2> {{myName}}</h2>
-  <h2>or {{plant.name}} is very happy when it is</h2>
-  <img href="{{img}}">
-
+  <h2>{{plant.name}} is very happy when it gets</h2>
+  {{!-- <img href="{{img}}"> --}}
+  <div><img src="https://media0.giphy.com/media/3oriNN5kkARo7ZAhuE/giphy.gif" height="200">
+  </div>
   <label for="light"> 🔆</label>
   <select name="light" id="light">
 
@@ -27,6 +28,6 @@
     <option value="{{soilCondition}}">{{soilCondition}} </option>
   </select>
   <p>You can add the recommended care routine to your plant calendar:</p>
-  <a><button type="submit">Set Reminder </button></a>
+  <a><button href="/calendar">Set Reminder </button></a>
   {{!-- <a href=" /myplants/{{:userId}}/calendar"><button type="button">Set Reminder </button></a> --}}
 </form>
