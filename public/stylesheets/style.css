@@ -166,4 +166,35 @@ a:active {
 .plantBotanical {
   color: #f8b704; }
 
+.myPlants {
+  z-index: 0;
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap; }
+
+.myPlantscard {
+  padding: 15px;
+  margin: 30px auto;
+  width: 150px;
+  height: 150px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  border-radius: 10px;
+  border: 0.5px;
+  border: #f8b704;
+  border-style: dotted;
+  cursor: pointer;
+  transition: 0.4s;
+  list-style: none; }
+
+.listitems {
+  text-align: center;
+  justify-content: start;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  align-items: center; }
+
 /*# sourceMappingURL=style.css.map */

@@ -171,7 +171,7 @@ router.post("/plantForm/:id", (req, res, next) => {
 router.post("/calendar", (req, res) => {
   const userID = req.user._id;
 
-  res.redirect("/calendar/");
+  res.redirect("/calendar");
 });
 
 router.get("/calendar", (req, res, next) => {
@@ -188,7 +188,7 @@ router.get("/calendar", (req, res, next) => {
   //     next(err);
   //   });
 
-  res.render("calendar.hbs", { plantDocument, userID: userID });
+  res.render("calendar.hbs", { /*plantDocument,*/ userID: userID });
 });
 
 // (add to calendar)

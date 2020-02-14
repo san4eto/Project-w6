@@ -1,20 +1,22 @@
 <h2>All your Plants</h2>
 <div class="myPlants">
-  <ul>
-    {{#each myPlants}}
 
-    <li>
+
+  {{#each myPlants}}
+  <div class="listitems">
+    <ul class="myPlantscard">
       <h3>🌱{{myName}}</h3>
-    </li>
-    <li class="commonName"> the {{commonName}} </li>
-    <div>
+
+      <li class="commonName"> the {{commonName}} </li>
+
       <li> 💧 {{waterNeed}}</li>
       <li> 🔆 {{light}}</li>
       <li> 🦦 {{soilCondition}}</li>
-    </div>
-    <a href="/plantCare/plantId"></a>
+      <a href="/plantForm/{{_id}}">button</a>
+
+    </ul>
+  </div>
+  {{/each}}
 
 
-    {{/each}}
-  </ul>
 </div>
